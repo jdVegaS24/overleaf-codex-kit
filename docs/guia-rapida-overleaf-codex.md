@@ -2,19 +2,9 @@
 
 Repositorio del curso: [overleaf-codex-kit en GitHub](https://github.com/jdVegaS24/overleaf-codex-kit)
 
-## 1. Descargar la skill
+## 1. Instalar la skill en Codex
 
-Opcion A, desde GitHub:
-
-1. Abrir [overleaf-codex-kit en GitHub](https://github.com/jdVegaS24/overleaf-codex-kit).
-2. Click en Code.
-3. Click en Download ZIP.
-4. Descomprimir el ZIP dentro de la carpeta del curso/proyecto.
-5. Abrir una terminal dentro de `overleaf-codex-kit`.
-
-## 2. Instalar la skill en Codex
-
-Usa este prompt en Codex para instalarla globalmente, sin tocar CMD o PowerShell:
+Pega este prompt en Codex. Codex crea la carpeta, clona el repo y deja la skill disponible en cualquier proyecto:
 
 ```text
 Instala globalmente la skill de Codex desde https://github.com/jdVegaS24/overleaf-codex-kit usando el instalador oficial de skills, para que quede disponible en cualquier proyecto.
@@ -24,7 +14,7 @@ Codex copiara la skill a tu instalacion local y quedara disponible en cualquier 
 
 Despues de instalar, abrir un nuevo hilo de Codex o reiniciar Codex si la skill no aparece.
 
-## 3. Preparar Overleaf
+## 2. Preparar Overleaf
 
 En Overleaf:
 
@@ -37,13 +27,13 @@ En Overleaf:
 
 Importante: no pegar el token en el chat de Codex. El token se escribe solo en el prompt local de Git o del instalador.
 
-## 4. Clonar y conectar el paper
+## 3. Clonar y conectar el paper
 
 La carpeta indicada en `TargetDir` sera la carpeta del paper. Crear o abrir Codex apuntando a esa carpeta para editar y subir cambios a Overleaf. No abrir `overleaf-codex-kit` para editar el paper; esa carpeta solo instala la skill.
 
 En Windows, `$HOME\Documents` normalmente funciona aunque el Explorador muestre la carpeta como `Documentos`. Tambien se puede cambiar por otra ruta real, por ejemplo `"$HOME\Desktop\mi-paper"` o `"$HOME\mi-paper"`.
 
-## 5. Usar Codex sobre el paper
+## 4. Usar Codex sobre el paper
 
 Crear o abrir Codex apuntando a la carpeta clonada del paper, por ejemplo `$HOME\mi-paper` o la ruta indicada en `TargetDir`.
 
@@ -59,7 +49,7 @@ Otro ejemplo:
 Usa $overleaf-paper-sync. Corrige la seccion de metodologia, conserva las citas existentes y haz push para que pueda recompilar en Overleaf.
 ```
 
-## 6. Ver los cambios en Overleaf
+## 5. Ver los cambios en Overleaf
 
 Cuando Codex termine:
 

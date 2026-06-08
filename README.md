@@ -18,7 +18,7 @@ Referencias oficiales:
 
 ## Instalar la skill
 
-Usa este prompt en Codex para instalarla globalmente, sin tocar CMD o PowerShell:
+Pega este prompt en Codex. Codex crea la carpeta, clona el repo y deja la skill disponible en cualquier proyecto:
 
 ```text
 Instala globalmente la skill de Codex desde https://github.com/jdVegaS24/overleaf-codex-kit usando el instalador oficial de skills, para que quede disponible en cualquier proyecto.
