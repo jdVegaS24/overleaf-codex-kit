@@ -29,7 +29,7 @@ cd overleaf-codex-kit
 Windows PowerShell:
 
 ```powershell
-.\install.ps1
+.\install.cmd
 ```
 
 macOS/Linux:
@@ -58,13 +58,13 @@ Importante: no pegar el token en el chat de Codex. El token se escribe solo en e
 Windows PowerShell:
 
 ```powershell
-.\setup-overleaf-project.ps1 -GitUrl "URL_GIT_DE_OVERLEAF" -TargetDir "$HOME\mi-paper"
+.\setup-overleaf-project.cmd -GitUrl "URL_GIT_DE_OVERLEAF" -TargetDir "$HOME\mi-paper"
 ```
 
 Ejemplo Windows:
 
 ```powershell
-.\setup-overleaf-project.ps1 -GitUrl "https://www.overleaf.com/project/PROJECT_ID" -TargetDir "$HOME\mi-paper"
+.\setup-overleaf-project.cmd -GitUrl "https://www.overleaf.com/project/PROJECT_ID" -TargetDir "$HOME\mi-paper"
 ```
 
 macOS/Linux:
@@ -108,6 +108,7 @@ Cuando Codex termine:
 
 ## Problemas frecuentes
 
+- PowerShell bloquea `install.ps1` por no estar firmado: ejecutar `.\install.cmd` en Windows.
 - `git` no se reconoce: instalar Git y volver a abrir la terminal.
 - La skill no aparece: reiniciar Codex o abrir un nuevo hilo.
 - Git pide usuario: escribir `git`.

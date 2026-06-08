@@ -21,7 +21,7 @@ Referencias oficiales:
 Windows PowerShell:
 
 ```powershell
-.\install.ps1
+.\install.cmd
 ```
 
 macOS/Linux:
@@ -46,7 +46,7 @@ Luego ejecuta:
 Windows PowerShell:
 
 ```powershell
-.\setup-overleaf-project.ps1 -GitUrl "https://git@git.overleaf.com/PROJECT_ID" -TargetDir "$HOME\Documents\paper"
+.\setup-overleaf-project.cmd -GitUrl "https://git@git.overleaf.com/PROJECT_ID" -TargetDir "$HOME\Documents\paper"
 ```
 
 macOS/Linux:
@@ -56,6 +56,8 @@ bash ./setup-overleaf-project.sh "https://git@git.overleaf.com/PROJECT_ID" "$HOM
 ```
 
 El token se pide en un prompt local. No lo pegues en Codex ni lo guardes en archivos.
+
+Si PowerShell bloquea un `.ps1` por no estar firmado, usa los comandos `.cmd` anteriores. Ejecutan el script con una excepcion solo para ese proceso.
 
 ## Uso en Codex
 
