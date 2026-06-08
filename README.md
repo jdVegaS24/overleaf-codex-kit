@@ -16,28 +16,15 @@ Referencias oficiales:
 - Overleaf Git integration: <https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/git-integration>
 - Overleaf Git authentication tokens: <https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/git-integration/git-integration-authentication-tokens>
 
-## Instalacion de la skill
+## Instalar la skill
 
-Windows PowerShell:
+Usa este prompt en Codex para instalarla globalmente, sin tocar CMD o PowerShell:
 
-```powershell
-.\install.cmd
+```text
+Instala globalmente la skill de Codex desde https://github.com/Imbad0202/academic-research-skills-codex usando el instalador oficial de skills, para que quede disponible en cualquier proyecto.
 ```
 
-macOS/Linux:
-
-```bash
-bash ./install.sh
-```
-
-Esto copia `skills/overleaf-paper-sync` a `~/.codex/skills` o a `$CODEX_HOME/skills`.
-
-Sin terminal, desde Codex:
-
-1. Descarga o clona este repo.
-2. Abre Codex en la carpeta del repo.
-3. Pega el prompt de [prompts/instalar-skill-global.md](prompts/instalar-skill-global.md).
-4. Codex copiara la skill a tu instalacion local y quedara disponible en cualquier proyecto.
+Codex copiara la skill a tu instalacion local y quedara disponible en cualquier proyecto.
 
 ## Conectar un proyecto de Overleaf
 

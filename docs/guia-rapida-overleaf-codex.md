@@ -4,11 +4,6 @@ Repositorio del curso: [overleaf-codex-kit en GitHub](https://github.com/jdVegaS
 
 ## 1. Descargar la skill
 
-Hay dos carpetas distintas:
-
-- Carpeta de la skill: `overleaf-codex-kit`. Se usa solo para instalar la skill y ejecutar los scripts.
-- Carpeta del paper: la ruta de `TargetDir`, por ejemplo `$HOME\mi-paper`. Codex debe apuntar a esta carpeta.
-
 Opcion A, desde GitHub:
 
 1. Abrir [overleaf-codex-kit en GitHub](https://github.com/jdVegaS24/overleaf-codex-kit).
@@ -17,33 +12,15 @@ Opcion A, desde GitHub:
 4. Descomprimir el ZIP dentro de la carpeta del curso/proyecto.
 5. Abrir una terminal dentro de `overleaf-codex-kit`.
 
-Opcion B, con Git:
-
-```bash
-git clone https://github.com/jdVegaS24/overleaf-codex-kit.git
-cd overleaf-codex-kit
-```
-
 ## 2. Instalar la skill en Codex
 
-Windows PowerShell:
+Usa este prompt en Codex para instalarla globalmente, sin tocar CMD o PowerShell:
 
-```powershell
-.\install.cmd
+```text
+Instala globalmente la skill de Codex desde https://github.com/Imbad0202/academic-research-skills-codex usando el instalador oficial de skills, para que quede disponible en cualquier proyecto.
 ```
 
-macOS/Linux:
-
-```bash
-bash ./install.sh
-```
-
-Sin terminal, desde Codex:
-
-1. Descarga o clona este repositorio.
-2. Abre Codex en la carpeta del repositorio.
-3. Pega el prompt de [prompts/instalar-skill-global.md](../prompts/instalar-skill-global.md).
-4. Codex copiara la skill a tu instalacion local y quedara disponible en cualquier proyecto.
+Codex copiara la skill a tu instalacion local y quedara disponible en cualquier proyecto.
 
 Despues de instalar, abrir un nuevo hilo de Codex o reiniciar Codex si la skill no aparece.
 
@@ -62,32 +39,9 @@ Importante: no pegar el token en el chat de Codex. El token se escribe solo en e
 
 ## 4. Clonar y conectar el paper
 
-Windows PowerShell:
-
-```powershell
-.\setup-overleaf-project.cmd -GitUrl "URL_GIT_DE_OVERLEAF" -TargetDir "$HOME\mi-paper"
-```
-
-Ejemplo Windows:
-
-```powershell
-.\setup-overleaf-project.cmd -GitUrl "https://www.overleaf.com/project/PROJECT_ID" -TargetDir "$HOME\mi-paper"
-```
-
-macOS/Linux:
-
-```bash
-bash ./setup-overleaf-project.sh "URL_GIT_DE_OVERLEAF" "$HOME/mi-paper"
-```
-
-No escribir los signos `< >`; reemplazar `URL_GIT_DE_OVERLEAF` por el link copiado desde Overleaf. La carpeta indicada en `TargetDir` sera la carpeta del paper. Abrir Codex apuntando a esa carpeta para editar y subir cambios a Overleaf. No abrir `overleaf-codex-kit` para editar el paper; esa carpeta solo instala la skill.
+La carpeta indicada en `TargetDir` sera la carpeta del paper. Crear o abrir Codex apuntando a esa carpeta para editar y subir cambios a Overleaf. No abrir `overleaf-codex-kit` para editar el paper; esa carpeta solo instala la skill.
 
 En Windows, `$HOME\Documents` normalmente funciona aunque el Explorador muestre la carpeta como `Documentos`. Tambien se puede cambiar por otra ruta real, por ejemplo `"$HOME\Desktop\mi-paper"` o `"$HOME\mi-paper"`.
-
-Si Git pide credenciales:
-
-- Username: `git`
-- Password: el token de Overleaf
 
 ## 5. Usar Codex sobre el paper
 
@@ -115,7 +69,6 @@ Cuando Codex termine:
 
 ## Problemas frecuentes
 
-- PowerShell bloquea `install.ps1` por no estar firmado: ejecutar `.\install.cmd` en Windows.
 - `git` no se reconoce: instalar Git y volver a abrir la terminal.
 - La skill no aparece: reiniciar Codex o abrir un nuevo hilo.
 - Git pide usuario: escribir `git`.
