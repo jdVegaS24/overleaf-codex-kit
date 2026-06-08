@@ -1,0 +1,4 @@
+interface:
+  display_name: "Overleaf Paper Sync"
+  short_description: "Edit and push Codex paper changes to Overleaf"
+  default_prompt: "Use $overleaf-paper-sync to connect this Overleaf Git paper and push my edits back to Overleaf."
