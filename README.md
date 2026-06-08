@@ -1,68 +1,19 @@
-# Overleaf Codex Kit
+# Overleaf Codex Skill
 
-Kit portable para que estudiantes o investigadores conecten Codex con un paper de Overleaf usando Git. La idea es simple: Codex edita el repositorio local, hace commit y push, y luego el usuario abre Overleaf y pulsa Recompile.
+Repositorio del curso para usar Codex con Overleaf y Git de forma transparente. La idea es simple: pega dos prompts en Codex, deja que Codex prepare la instalacion y el paper, y luego recompila en Overleaf.
 
 Guia rapida para estudiantes: [docs/guia-rapida-overleaf-codex.pdf](docs/guia-rapida-overleaf-codex.pdf)
 
-## Requisitos
-
-- Codex instalado.
-- Git instalado.
-- Acceso a Git Integration en Overleaf. En Overleaf Cloud es una funcion premium o institucional.
-- Token de Git de Overleaf generado desde Account Settings.
-
-Referencias oficiales:
-
-- Overleaf Git integration: <https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/git-integration>
-- Overleaf Git authentication tokens: <https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/git-integration/git-integration-authentication-tokens>
-
-## Instalar la skill
-
-Pega este prompt en Codex. Codex crea la carpeta, clona el repo y deja la skill disponible en cualquier proyecto:
+## Prompt 1: instalar la skill globalmente
 
 ```text
 Instala globalmente la skill de Codex desde https://github.com/jdVegaS24/overleaf-codex-kit usando el instalador oficial de skills, para que quede disponible en cualquier proyecto.
 ```
 
-Codex copiara la skill a tu instalacion local y quedara disponible en cualquier proyecto.
-
-## Conectar un proyecto de Overleaf
-
-En Overleaf:
-
-1. Abre el proyecto.
-2. Activa o abre Git Integration desde Integrations/Menu.
-3. Copia el Git URL o el comando `git clone`.
-4. Genera tu Git authentication token en Account Settings.
-
-Luego ejecuta:
-
-Windows PowerShell:
-
-```powershell
-.\setup-overleaf-project.cmd -GitUrl "https://git@git.overleaf.com/PROJECT_ID" -TargetDir "$HOME\Documents\paper"
-```
-
-macOS/Linux:
-
-```bash
-bash ./setup-overleaf-project.sh "https://git@git.overleaf.com/PROJECT_ID" "$HOME/Documents/paper"
-```
-
-El token se pide en un prompt local. No lo pegues en Codex ni lo guardes en archivos.
-
-Si PowerShell bloquea un `.ps1` por no estar firmado, usa los comandos `.cmd` anteriores. Ejecutan el script con una excepcion solo para ese proceso.
-
-## Uso en Codex
-
-Abre Codex en la carpeta clonada del paper y pide, por ejemplo:
+## Prompt 2: conectar el paper de Overleaf
 
 ```text
-Usa $overleaf-paper-sync para revisar la introduccion y subir los cambios a Overleaf.
+Crea una carpeta nueva para este paper, conecta mi proyecto de Overleaf con Git usando este link: https://www.overleaf.com/project/PROJECT_ID, usa esa carpeta como TargetDir, y deja todo listo para editar y subir cambios sin abrir CMD o PowerShell.
 ```
 
-Cuando Codex termine, abre Overleaf y pulsa Recompile.
-
-## Nota para clase
-
-Overleaf Git no es un Git remoto completo: evita ramas, tags, Git LFS y submodulos dentro del proyecto. Para el curso, el flujo recomendado es lineal: pull, editar, validar, commit, push, Recompile.
+Cuando Codex termine, abre Overleaf y pulsa Recompile para ver los cambios.
