@@ -6,3 +6,4 @@
 *.ps1 text eol=crlf
 *.yaml text eol=lf
 *.yml text eol=lf
+*.pdf binary

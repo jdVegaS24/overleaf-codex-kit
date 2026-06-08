@@ -2,6 +2,8 @@
 
 Kit portable para que estudiantes o investigadores conecten Codex con un paper de Overleaf usando Git. La idea es simple: Codex edita el repositorio local, hace commit y push, y luego el usuario abre Overleaf y pulsa Recompile.
 
+Guia rapida para estudiantes: [docs/guia-rapida-overleaf-codex.pdf](docs/guia-rapida-overleaf-codex.pdf)
+
 ## Requisitos
 
 - Codex instalado.
