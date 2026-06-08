@@ -1,14 +1,12 @@
 # Guia rapida: Codex + Overleaf + Git
 
-Repositorio del curso: <https://github.com/jdVegaS24/overleaf-codex-kit>
-
-Objetivo: instalar una skill en Codex para que Codex edite un paper clonado desde Overleaf por Git, haga commit/push, y luego el usuario vea los cambios en Overleaf al pulsar Recompile.
+Repositorio del curso: [overleaf-codex-kit en GitHub](https://github.com/jdVegaS24/overleaf-codex-kit)
 
 ## 1. Descargar el kit
 
 Opcion A, desde GitHub:
 
-1. Abrir <https://github.com/jdVegaS24/overleaf-codex-kit>.
+1. Abrir [overleaf-codex-kit en GitHub](https://github.com/jdVegaS24/overleaf-codex-kit).
 2. Click en Code.
 3. Click en Download ZIP.
 4. Descomprimir el ZIP.
@@ -43,7 +41,7 @@ En Overleaf:
 
 1. Abrir el proyecto del paper.
 2. Ir a Menu o Integrations.
-3. Activar o abrir Git Integration. Para generar o revisar el token de Git, usar: <https://www.overleaf.com/user/settings>.
+3. Activar o abrir Git Integration. Para generar o revisar el token de Git, abrir [Overleaf Account Settings](https://www.overleaf.com/user/settings).
 4. Copiar el Git URL del proyecto.
 5. Ir a Account Settings si todavia no se abrio desde el enlace anterior.
 6. Generar un Git authentication token.
@@ -56,7 +54,7 @@ Windows PowerShell:
 
 ```powershell
 .\setup-overleaf-project.ps1 `
-  -GitUrl "https://git@git.overleaf.com/PROJECT_ID" `
+  -GitUrl "<URL_GIT_DE_OVERLEAF>" `
   -TargetDir "$HOME\Documents\mi-paper"
 ```
 
@@ -64,7 +62,7 @@ macOS/Linux:
 
 ```bash
 bash ./setup-overleaf-project.sh \
-  "https://git@git.overleaf.com/PROJECT_ID" \
+  "<URL_GIT_DE_OVERLEAF>" \
   "$HOME/Documents/mi-paper"
 ```
 
@@ -105,7 +103,3 @@ Cuando Codex termine:
 - Git pide password: usar el token de Overleaf.
 - Overleaf no muestra cambios: confirmar que Codex hizo push y luego pulsar Recompile.
 - Hay conflicto de Git: pedir a Codex que use `$overleaf-paper-sync` para resolver el conflicto antes de hacer push.
-
-## Regla de oro para clase
-
-Usar un flujo simple: pull, editar, validar, commit, push, Recompile. Evitar ramas, tags, Git LFS y submodulos dentro del proyecto de Overleaf.
