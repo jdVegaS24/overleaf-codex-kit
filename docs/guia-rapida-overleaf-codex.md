@@ -17,7 +17,7 @@ Opcion A, desde GitHub:
 Usa este prompt en Codex para instalarla globalmente, sin tocar CMD o PowerShell:
 
 ```text
-Instala globalmente la skill de Codex desde https://github.com/Imbad0202/academic-research-skills-codex usando el instalador oficial de skills, para que quede disponible en cualquier proyecto.
+Instala globalmente la skill de Codex desde https://github.com/jdVegaS24/overleaf-codex-kit usando el instalador oficial de skills, para que quede disponible en cualquier proyecto.
 ```
 
 Codex copiara la skill a tu instalacion local y quedara disponible en cualquier proyecto.
