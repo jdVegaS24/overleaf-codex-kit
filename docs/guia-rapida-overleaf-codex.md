@@ -4,13 +4,15 @@ Repositorio del curso: [overleaf-codex-kit en GitHub](https://github.com/jdVegaS
 
 ## 1. Descargar el kit
 
+Guardar o clonar este kit dentro de una carpeta del curso/proyecto. Esa sera la carpeta desde donde se ejecuta el instalador y que Codex puede abrir para revisar el material.
+
 Opcion A, desde GitHub:
 
 1. Abrir [overleaf-codex-kit en GitHub](https://github.com/jdVegaS24/overleaf-codex-kit).
 2. Click en Code.
 3. Click en Download ZIP.
-4. Descomprimir el ZIP.
-5. Abrir una terminal dentro de la carpeta `overleaf-codex-kit`.
+4. Descomprimir el ZIP dentro de la carpeta del curso/proyecto.
+5. Abrir una terminal dentro de `overleaf-codex-kit`.
 
 Opcion B, con Git:
 
@@ -53,18 +55,16 @@ Importante: no pegar el token en el chat de Codex. El token se escribe solo en e
 Windows PowerShell:
 
 ```powershell
-.\setup-overleaf-project.ps1 `
-  -GitUrl "<URL_GIT_DE_OVERLEAF>" `
-  -TargetDir "$HOME\Documents\mi-paper"
+.\setup-overleaf-project.ps1 -GitUrl "<URL_GIT_DE_OVERLEAF>" -TargetDir "$HOME\Documents\mi-paper"
 ```
 
 macOS/Linux:
 
 ```bash
-bash ./setup-overleaf-project.sh \
-  "<URL_GIT_DE_OVERLEAF>" \
-  "$HOME/Documents/mi-paper"
+bash ./setup-overleaf-project.sh "<URL_GIT_DE_OVERLEAF>" "$HOME/Documents/mi-paper"
 ```
+
+La carpeta indicada en `TargetDir` sera la carpeta del paper. Abrir Codex apuntando a esa carpeta para editar y subir cambios a Overleaf.
 
 Si Git pide credenciales:
 

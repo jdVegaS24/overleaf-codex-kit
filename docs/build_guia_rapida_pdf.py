@@ -80,6 +80,13 @@ styles.add(
 )
 styles.add(
     ParagraphStyle(
+        name="GuideBodyKeep",
+        parent=styles["GuideBody"],
+        keepWithNext=True,
+    )
+)
+styles.add(
+    ParagraphStyle(
         name="GuideList",
         parent=styles["BodyText"],
         fontName="Helvetica",
@@ -168,9 +175,11 @@ def code_markup(text: str) -> str:
 
 
 def code_block(text: str) -> Table:
+    lines = [line for line in text.rstrip().splitlines() if line.strip()]
     header = Table(
-        [[Paragraph("Copiable", styles["GuideSmall"]), CopyBadge()]],
+        [[Paragraph("", styles["GuideSmall"]), CopyBadge()]],
         colWidths=[CONTENT_WIDTH - 0.72 * inch, 0.66 * inch],
+        splitByRow=0,
     )
     header.setStyle(
         TableStyle(
@@ -184,8 +193,8 @@ def code_block(text: str) -> Table:
             ]
         )
     )
-    body = Paragraph(f'<font name="Courier">{code_markup(text)}</font>', CODE_STYLE)
-    table = Table([[header], [body]], colWidths=[CONTENT_WIDTH])
+    body_cells = [[Paragraph(f'<font name="Courier">{code_markup(line)}</font>', CODE_STYLE)] for line in lines]
+    table = Table([[header], *body_cells], colWidths=[CONTENT_WIDTH], splitByRow=0)
     table.setStyle(
         TableStyle(
             [
@@ -281,7 +290,8 @@ def parse_markdown(text: str) -> list:
             story.append(callout(stripped, "#fefce8", "#eab308"))
             continue
 
-        story.append(Paragraph(inline_markup(stripped), styles["GuideBody"]))
+        label_style = "GuideBodyKeep" if stripped.endswith(":") else "GuideBody"
+        story.append(Paragraph(inline_markup(stripped), styles[label_style]))
 
     if first_heading:
         story.insert(0, Paragraph("Guia rapida: Codex + Overleaf + Git", styles["GuideTitle"]))
