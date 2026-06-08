@@ -4,7 +4,7 @@ Repositorio del curso: [overleaf-codex-kit en GitHub](https://github.com/jdVegaS
 
 ## 1. Descargar el kit
 
-Guardar o clonar este kit dentro de una carpeta del curso/proyecto. Esa sera la carpeta desde donde se ejecuta el instalador y que Codex puede abrir para revisar el material.
+Guardar o clonar este kit dentro de una carpeta del curso/proyecto. Esta carpeta solo sirve para instalar la skill y ejecutar los scripts. El paper se clonara despues en `TargetDir`, que sera la carpeta que se abre en Codex.
 
 Opcion A, desde GitHub:
 
@@ -55,16 +55,24 @@ Importante: no pegar el token en el chat de Codex. El token se escribe solo en e
 Windows PowerShell:
 
 ```powershell
-.\setup-overleaf-project.ps1 -GitUrl "<URL_GIT_DE_OVERLEAF>" -TargetDir "$HOME\Documents\mi-paper"
+.\setup-overleaf-project.ps1 -GitUrl "URL_GIT_DE_OVERLEAF" -TargetDir "$HOME\mi-paper"
+```
+
+Ejemplo Windows:
+
+```powershell
+.\setup-overleaf-project.ps1 -GitUrl "https://www.overleaf.com/project/PROJECT_ID" -TargetDir "$HOME\mi-paper"
 ```
 
 macOS/Linux:
 
 ```bash
-bash ./setup-overleaf-project.sh "<URL_GIT_DE_OVERLEAF>" "$HOME/Documents/mi-paper"
+bash ./setup-overleaf-project.sh "URL_GIT_DE_OVERLEAF" "$HOME/mi-paper"
 ```
 
-La carpeta indicada en `TargetDir` sera la carpeta del paper. Abrir Codex apuntando a esa carpeta para editar y subir cambios a Overleaf.
+No escribir los signos `< >`; reemplazar `URL_GIT_DE_OVERLEAF` por el link copiado desde Overleaf. La carpeta indicada en `TargetDir` sera la carpeta del paper. Abrir Codex apuntando a esa carpeta para editar y subir cambios a Overleaf.
+
+En Windows, `$HOME\Documents` normalmente funciona aunque el Explorador muestre la carpeta como `Documentos`. Tambien se puede cambiar por otra ruta real, por ejemplo `"$HOME\Desktop\mi-paper"` o `"$HOME\mi-paper"`.
 
 Si Git pide credenciales:
 
@@ -73,7 +81,7 @@ Si Git pide credenciales:
 
 ## 5. Usar Codex sobre el paper
 
-Abrir Codex en la carpeta clonada del paper, por ejemplo `Documents/mi-paper`.
+Abrir Codex en la carpeta clonada del paper, por ejemplo `$HOME\mi-paper` o la ruta indicada en `TargetDir`.
 
 Prompt recomendado:
 
