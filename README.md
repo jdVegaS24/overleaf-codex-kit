@@ -32,6 +32,13 @@ bash ./install.sh
 
 Esto copia `skills/overleaf-paper-sync` a `~/.codex/skills` o a `$CODEX_HOME/skills`.
 
+Sin terminal, desde Codex:
+
+1. Descarga o clona este repo.
+2. Abre Codex en la carpeta del repo.
+3. Pega el prompt de [prompts/instalar-skill-global.md](prompts/instalar-skill-global.md).
+4. Codex copiara la skill a tu instalacion local y quedara disponible en cualquier proyecto.
+
 ## Conectar un proyecto de Overleaf
 
 En Overleaf:

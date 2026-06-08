@@ -38,6 +38,13 @@ macOS/Linux:
 bash ./install.sh
 ```
 
+Sin terminal, desde Codex:
+
+1. Descarga o clona este repositorio.
+2. Abre Codex en la carpeta del repositorio.
+3. Pega el prompt de [prompts/instalar-skill-global.md](../prompts/instalar-skill-global.md).
+4. Codex copiara la skill a tu instalacion local y quedara disponible en cualquier proyecto.
+
 Despues de instalar, abrir un nuevo hilo de Codex o reiniciar Codex si la skill no aparece.
 
 ## 3. Preparar Overleaf
