@@ -2,11 +2,11 @@
 
 Repositorio del curso: [overleaf-codex-kit en GitHub](https://github.com/jdVegaS24/overleaf-codex-kit)
 
-## 1. Descargar el kit
+## 1. Descargar la skill
 
 Hay dos carpetas distintas:
 
-- Carpeta del kit: `overleaf-codex-kit`. Se usa solo para instalar la skill y ejecutar los scripts.
+- Carpeta de la skill: `overleaf-codex-kit`. Se usa solo para instalar la skill y ejecutar los scripts.
 - Carpeta del paper: la ruta de `TargetDir`, por ejemplo `$HOME\mi-paper`. Codex debe apuntar a esta carpeta.
 
 Opcion A, desde GitHub:

@@ -305,7 +305,7 @@ def footer(canvas, doc) -> None:
     canvas.drawCentredString(
         letter[0] / 2,
         0.42 * inch,
-        f"Overleaf Codex Kit | {REPO_URL} | pagina {doc.page}",
+        f"Overleaf Codex Skill | {REPO_URL} | pagina {doc.page}",
     )
     canvas.restoreState()
 
@@ -321,7 +321,7 @@ def main() -> int:
         bottomMargin=0.55 * inch,
         title="Guia rapida Codex Overleaf Git",
         author="Curso IA - USFQ",
-        subject="Instalacion de Overleaf Codex Kit",
+        subject="Instalacion de Overleaf Codex Skill",
     )
     doc.build(story, onFirstPage=footer, onLaterPages=footer)
     print(OUTPUT)
