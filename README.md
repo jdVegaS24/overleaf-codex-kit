@@ -13,7 +13,7 @@ Instala globalmente la skill de Codex desde https://github.com/jdVegaS24/overlea
 ## Flujo
 
 1. En Overleaf, abre el proyecto que quieres modificar.
-2. En Overleaf Account Settings, genera tu Git authentication token.
+2. En Overleaf Account Settings, entra desde https://www.overleaf.com/login y genera tu Git authentication token.
 3. Copia el Git URL del proyecto.
 4. Pega el Prompt 1 en Codex para instalar la skill.
 5. Pega el Prompt 2 en Codex para conectar el paper y crear la carpeta de trabajo.
