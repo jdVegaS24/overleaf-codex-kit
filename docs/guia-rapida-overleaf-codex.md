@@ -43,9 +43,9 @@ En Overleaf:
 
 1. Abrir el proyecto del paper.
 2. Ir a Menu o Integrations.
-3. Activar o abrir Git Integration.
+3. Activar o abrir Git Integration. Para generar o revisar el token de Git, usar: <https://www.overleaf.com/user/settings>.
 4. Copiar el Git URL del proyecto.
-5. Ir a Account Settings.
+5. Ir a Account Settings si todavia no se abrio desde el enlace anterior.
 6. Generar un Git authentication token.
 
 Importante: no pegar el token en el chat de Codex. El token se escribe solo en el prompt local de Git o del instalador.
