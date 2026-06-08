@@ -13,9 +13,8 @@ from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
 from reportlab.platypus import (
-    PageBreak,
+    Flowable,
     Paragraph,
-    Preformatted,
     SimpleDocTemplate,
     Spacer,
     Table,
@@ -105,10 +104,32 @@ CODE_STYLE = ParagraphStyle(
     name="GuideCode",
     parent=styles["Code"],
     fontName="Courier",
-    fontSize=8.3,
-    leading=10.2,
+    fontSize=8.0,
+    leading=9.8,
     textColor=colors.HexColor("#111827"),
+    wordWrap="CJK",
 )
+
+
+class CopyBadge(Flowable):
+    """Small visual copy hint for code blocks."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.width = 54
+        self.height = 14
+
+    def draw(self) -> None:
+        canvas = self.canv
+        canvas.saveState()
+        canvas.setStrokeColor(colors.HexColor("#64748b"))
+        canvas.setFillColor(colors.HexColor("#64748b"))
+        canvas.setLineWidth(0.7)
+        canvas.roundRect(2, 4, 7, 8, 1.2, stroke=1, fill=0)
+        canvas.roundRect(5, 6, 7, 8, 1.2, stroke=1, fill=0)
+        canvas.setFont("Helvetica", 7.3)
+        canvas.drawString(17, 4.7, "copiar")
+        canvas.restoreState()
 
 
 def inline_markup(text: str) -> str:
@@ -124,17 +145,45 @@ def inline_markup(text: str) -> str:
     return text
 
 
+def code_markup(text: str) -> str:
+    lines = []
+    for line in text.rstrip().splitlines():
+        leading = len(line) - len(line.lstrip(" "))
+        prefix = "&nbsp;" * leading
+        body = html.escape(line[leading:])
+        lines.append(prefix + body)
+    return "<br/>".join(lines)
+
+
 def code_block(text: str) -> Table:
-    table = Table([[Preformatted(text.rstrip(), CODE_STYLE)]], colWidths=[6.45 * inch])
+    header = Table(
+        [[Paragraph("Comando", styles["GuideSmall"]), CopyBadge()]],
+        colWidths=[5.62 * inch, 0.65 * inch],
+    )
+    header.setStyle(
+        TableStyle(
+            [
+                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                ("ALIGN", (1, 0), (1, 0), "RIGHT"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+                ("TOPPADDING", (0, 0), (-1, -1), 0),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
+            ]
+        )
+    )
+    body = Paragraph(f'<font name="Courier">{code_markup(text)}</font>', CODE_STYLE)
+    table = Table([[header], [body]], colWidths=[6.27 * inch])
     table.setStyle(
         TableStyle(
             [
                 ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#f8fafc")),
                 ("BOX", (0, 0), (-1, -1), 0.5, colors.HexColor("#cbd5e1")),
+                ("LINEBELOW", (0, 0), (-1, 0), 0.35, colors.HexColor("#e2e8f0")),
                 ("LEFTPADDING", (0, 0), (-1, -1), 8),
                 ("RIGHTPADDING", (0, 0), (-1, -1), 8),
-                ("TOPPADDING", (0, 0), (-1, -1), 7),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
+                ("TOPPADDING", (0, 0), (-1, -1), 5),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
             ]
         )
     )
@@ -198,10 +247,11 @@ def parse_markdown(text: str) -> list:
             first_heading = False
             continue
 
+        if stripped == f"Repositorio del curso: <{REPO_URL}>":
+            continue
+
         if stripped.startswith("## "):
             heading = stripped[3:]
-            if heading == "4. Clonar y conectar el paper":
-                story.append(PageBreak())
             story.append(Paragraph(inline_markup(heading), styles["GuideH2"]))
             continue
 

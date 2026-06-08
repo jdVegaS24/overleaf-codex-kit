@@ -55,13 +55,17 @@ Importante: no pegar el token en el chat de Codex. El token se escribe solo en e
 Windows PowerShell:
 
 ```powershell
-.\setup-overleaf-project.ps1 -GitUrl "https://git@git.overleaf.com/PROJECT_ID" -TargetDir "$HOME\Documents\mi-paper"
+.\setup-overleaf-project.ps1 `
+  -GitUrl "https://git@git.overleaf.com/PROJECT_ID" `
+  -TargetDir "$HOME\Documents\mi-paper"
 ```
 
 macOS/Linux:
 
 ```bash
-bash ./setup-overleaf-project.sh "https://git@git.overleaf.com/PROJECT_ID" "$HOME/Documents/mi-paper"
+bash ./setup-overleaf-project.sh \
+  "https://git@git.overleaf.com/PROJECT_ID" \
+  "$HOME/Documents/mi-paper"
 ```
 
 Si Git pide credenciales:
