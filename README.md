@@ -2,7 +2,9 @@
 
 Repositorio del curso para usar Codex con Overleaf y Git de forma transparente. La idea es simple: pega dos prompts en Codex, deja que Codex prepare la instalacion y el paper, y luego recompila en Overleaf.
 
-Guia rapida para estudiantes: [docs/guia-rapida-overleaf-codex.pdf](docs/guia-rapida-overleaf-codex.pdf)
+Guia rapida para estudiantes: [docs/guia-rapida-overleaf-codex.html](docs/guia-rapida-overleaf-codex.html)
+
+PDF alternativo: [docs/guia-rapida-overleaf-codex.pdf](docs/guia-rapida-overleaf-codex.pdf)
 
 ## Prompt 1: instalar la skill globalmente
 

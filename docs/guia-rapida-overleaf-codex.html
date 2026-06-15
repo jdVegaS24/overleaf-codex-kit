@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guia rapida: Codex + Overleaf + Git</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --panel: #ffffff;
+      --border: #cbd5e1;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #2563eb;
+      --accent-strong: #1d4ed8;
+      --code-bg: #f1f5f9;
+      --ok: #0f766e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+    }
+    .hero {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 18px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 2rem;
+      line-height: 1.1;
+    }
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+    }
+    .meta {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.2rem;
+    }
+    ol {
+      margin: 0;
+      padding-left: 22px;
+    }
+    .prompt {
+      margin: 14px 0 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--code-bg);
+    }
+    .prompt-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .prompt-label {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .copy-btn {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .copy-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent-strong);
+    }
+    pre {
+      margin: 0;
+      padding: 16px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.95rem;
+      color: #111827;
+    }
+    .note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .link {
+      color: var(--accent);
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    .done {
+      color: var(--ok);
+      font-weight: 700;
+      margin-left: 8px;
+      visibility: hidden;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <h1>Guia rapida: Codex + Overleaf + Git</h1>
+      <p class="subtitle">Pega dos prompts, conecta Overleaf por Git y recompila para ver los cambios.</p>
+      <div class="meta">
+        <a class="chip" href="https://github.com/jdVegaS24/overleaf-codex-kit" target="_blank" rel="noreferrer">Repositorio del curso</a>
+        <a class="chip" href="https://www.overleaf.com/user/settings" target="_blank" rel="noreferrer">Overleaf Account Settings</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Flujo</h2>
+      <ol>
+        <li>En Overleaf, abre el proyecto que quieres modificar.</li>
+        <li>En Overleaf Account Settings, entra desde <a class="link" href="https://www.overleaf.com/user/settings" target="_blank" rel="noreferrer">este enlace</a> y genera tu Git authentication token.</li>
+        <li>Copia el Git URL del proyecto.</li>
+        <li>Pega el Prompt 1 en Codex para instalar la skill.</li>
+        <li>Pega el Prompt 2 en Codex para conectar el paper y crear la carpeta de trabajo.</li>
+        <li>Cuando Codex termine, abre Overleaf y pulsa Recompile para ver los cambios.</li>
+      </ol>
+      <p class="note">Nota: el token se escribe en el prompt local de Git o en el instalador cuando se lo pide; no se pega en el chat de Codex. <code>PROJECT_ID</code> es el identificador del proyecto de Overleaf que quieres modificar.</p>
+    </section>
+
+    <section class="section">
+      <h2>Prompt 1: instalar la skill globalmente</h2>
+      <div class="prompt">
+        <div class="prompt-head">
+          <span class="prompt-label">Prompt listo para copiar</span>
+          <button class="copy-btn" data-copy="prompt1" type="button">Copiar</button>
+          <span class="done" id="done-prompt1">Copiado</span>
+        </div>
+        <pre id="prompt1">Instala globalmente la skill de Codex desde https://github.com/jdVegaS24/overleaf-codex-kit usando el instalador oficial de skills, para que quede disponible en cualquier proyecto.</pre>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Prompt 2: conectar el paper de Overleaf</h2>
+      <div class="prompt">
+        <div class="prompt-head">
+          <span class="prompt-label">Prompt listo para copiar</span>
+          <button class="copy-btn" data-copy="prompt2" type="button">Copiar</button>
+          <span class="done" id="done-prompt2">Copiado</span>
+        </div>
+        <pre id="prompt2">Crea una carpeta nueva para este paper, conecta mi proyecto de Overleaf con Git usando este link: https://www.overleaf.com/project/PROJECT_ID, usa esa carpeta como TargetDir, y deja todo listo para editar y subir cambios sin abrir CMD o PowerShell.</pre>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const copyText = async (text) => {
+      await navigator.clipboard.writeText(text);
+    };
+
+    document.querySelectorAll("[data-copy]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const id = button.getAttribute("data-copy");
+        const text = document.getElementById(id).innerText;
+        try {
+          await copyText(text);
+          const done = document.getElementById(`done-${id}`);
+          done.style.visibility = "visible";
+          setTimeout(() => {
+            done.style.visibility = "hidden";
+          }, 1200);
+        } catch (error) {
+          window.alert("No se pudo copiar el texto.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
