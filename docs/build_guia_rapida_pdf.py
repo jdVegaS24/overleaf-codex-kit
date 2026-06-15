@@ -12,14 +12,7 @@ from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
-from reportlab.platypus import (
-    Flowable,
-    Paragraph,
-    SimpleDocTemplate,
-    Spacer,
-    Table,
-    TableStyle,
-)
+from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 
 ROOT = Path(__file__).resolve().parent
@@ -120,27 +113,6 @@ CODE_STYLE = ParagraphStyle(
 )
 
 
-class CopyBadge(Flowable):
-    """Small visual copy hint for code blocks."""
-
-    def __init__(self) -> None:
-        super().__init__()
-        self.width = 50
-        self.height = 14
-
-    def draw(self) -> None:
-        canvas = self.canv
-        canvas.saveState()
-        canvas.setStrokeColor(colors.HexColor("#0f172a"))
-        canvas.setFillColor(colors.HexColor("#0f172a"))
-        canvas.setLineWidth(0.95)
-        canvas.roundRect(2, 3, 8, 9, 1.3, stroke=1, fill=0)
-        canvas.roundRect(6, 6, 8, 9, 1.3, stroke=1, fill=0)
-        canvas.setFont("Helvetica-Bold", 7.0)
-        canvas.drawString(18, 4.0, "Copiar")
-        canvas.restoreState()
-
-
 def inline_markup(text: str) -> str:
     markdown_link_pattern = re.compile(r"\[([^\]]+)\]\((https?://[^)]+)\)")
     parts = []
@@ -176,31 +148,13 @@ def code_markup(text: str) -> str:
 
 def code_block(text: str) -> Table:
     lines = [line for line in text.rstrip().splitlines() if line.strip()]
-    header = Table(
-        [[Paragraph("", styles["GuideSmall"]), CopyBadge()]],
-        colWidths=[CONTENT_WIDTH - 0.72 * inch, 0.66 * inch],
-        splitByRow=0,
-    )
-    header.setStyle(
-        TableStyle(
-            [
-                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-                ("ALIGN", (1, 0), (1, 0), "RIGHT"),
-                ("LEFTPADDING", (0, 0), (-1, -1), 0),
-                ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-                ("TOPPADDING", (0, 0), (-1, -1), 0),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
-            ]
-        )
-    )
     body_cells = [[Paragraph(f'<font name="Courier">{code_markup(line)}</font>', CODE_STYLE)] for line in lines]
-    table = Table([[header], *body_cells], colWidths=[CONTENT_WIDTH], splitByRow=0)
+    table = Table(body_cells, colWidths=[CONTENT_WIDTH], splitByRow=0)
     table.setStyle(
         TableStyle(
             [
                 ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#f8fafc")),
                 ("BOX", (0, 0), (-1, -1), 0.5, colors.HexColor("#cbd5e1")),
-                ("LINEBELOW", (0, 0), (-1, 0), 0.35, colors.HexColor("#e2e8f0")),
                 ("LEFTPADDING", (0, 0), (-1, -1), 8),
                 ("RIGHTPADDING", (0, 0), (-1, -1), 8),
                 ("TOPPADDING", (0, 0), (-1, -1), 3),
