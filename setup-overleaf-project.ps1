@@ -1,6 +1,5 @@
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory = $true)]
     [string]$GitUrl,
 
     [string]$TargetDir,
@@ -11,6 +10,19 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+
+function Prompt-IfEmpty {
+    param(
+        [string]$Value,
+        [string]$Message
+    )
+
+    if ([string]::IsNullOrWhiteSpace($Value)) {
+        return Read-Host $Message
+    }
+
+    return $Value
+}
 
 function Normalize-OverleafGitUrl {
     param([string]$Value)
@@ -88,9 +100,18 @@ function Store-OverleafCredential {
 
 & git --version | Out-Host
 
+$GitUrl = Prompt-IfEmpty -Value $GitUrl -Message "Pega el Git URL de Overleaf (ej: https://www.overleaf.com/project/PROJECT_ID)"
+if ([string]::IsNullOrWhiteSpace($GitUrl)) {
+    throw "No se recibió el Git URL de Overleaf."
+}
+
 $normalizedUrl = Normalize-OverleafGitUrl $GitUrl
 if (-not $TargetDir) {
-    $TargetDir = Join-Path (Get-Location) (Get-ProjectNameFromUrl $normalizedUrl)
+    $defaultTarget = Join-Path (Get-Location) (Get-ProjectNameFromUrl $normalizedUrl)
+    $TargetDir = Prompt-IfEmpty -Value $TargetDir -Message "Carpeta destino del paper [Enter para usar $defaultTarget]"
+    if ([string]::IsNullOrWhiteSpace($TargetDir)) {
+        $TargetDir = $defaultTarget
+    }
 }
 
 if (-not $NoCredentialStore) {

@@ -19,6 +19,8 @@ Instala globalmente la skill de Codex desde https://github.com/jdVegaS24/overlea
 5. Pega el Prompt 2 en Codex para conectar el paper y crear la carpeta de trabajo.
 6. Cuando Codex termine, abre Overleaf y pulsa Recompile para ver los cambios.
 
+Si prefieres evitar PowerShell, haz doble clic en `setup-overleaf-project.cmd` y responde las preguntas en pantalla.
+
 ## 2. Conectar el paper de Overleaf
 
 ```text
