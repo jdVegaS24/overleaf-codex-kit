@@ -13,10 +13,10 @@ Make local Codex edits land in the user's Overleaf project through Git. After a 
 
 1. If the repository is not cloned yet, read `references/setup-guide.md` and guide the user through the minimal setup. Never ask the user to paste an Overleaf token into chat; use the setup script or Git credential prompt.
 2. If already inside a paper repository, run the helper script's `doctor` command to confirm the repo, remote, branch, status, and likely main `.tex` files.
-3. Before editing, pull the latest Overleaf state with `preflight` unless the worktree has uncommitted user changes. If dirty, inspect and preserve those changes.
+3. Whenever the user asks for an edit or revision, automatically run `preflight` first to pull the latest Overleaf state unless the worktree has uncommitted user changes. If dirty, inspect and preserve those changes before editing.
 4. Make the requested paper edits, keeping LaTeX structure and bibliography files intact.
 5. Validate locally with conflict-marker checks and `git diff --check`. Compile only when a local TeX toolchain is available or the user asks for it; Overleaf remains the canonical compile environment.
-6. Commit and push with `sync` unless the user explicitly asks not to push. Report the pushed commit hash and tell the user to Recompile in Overleaf.
+6. Automatically run `sync` at the end unless the user explicitly asks not to push. Report the pushed commit hash and tell the user to Recompile in Overleaf.
 
 ## Commands
 
@@ -52,14 +52,14 @@ When editing a manuscript:
 
 ## Validation
 
-Minimum checks before pushing:
+Minimum checks before pushing, run automatically as part of the workflow:
 
 ```bash
 python scripts/overleaf_sync.py doctor .
 python scripts/overleaf_sync.py sync . --message "Codex: <short summary>"
 ```
 
-The `sync` command stages all changes, checks for merge-conflict markers, runs `git diff --cached --check`, commits, rebases from the remote, and pushes.
+The `sync` command stages all changes, checks for merge-conflict markers, runs `git diff --cached --check`, commits, rebases from the remote, and pushes. The user does not need to click anything between edit and push.
 
 Optional checks when available:
 
@@ -70,3 +70,14 @@ Optional checks when available:
 ## Setup Reference
 
 Read `references/setup-guide.md` when the user asks how to install, clone, authenticate, teach this workflow, or connect a new Overleaf project.
+
+## Classroom Behavior
+
+For classroom usage, the default workflow is hands-off for the student after they invoke the skill:
+
+1. Pull the latest Overleaf version first.
+2. Make the requested edit.
+3. Validate.
+4. Push automatically.
+
+Only stop for user input if the repository is not yet connected or Git requests a token/credential prompt during setup.
