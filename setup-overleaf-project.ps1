@@ -138,6 +138,26 @@ if (Test-Path $TargetDir) {
     & git clone $normalizedUrl $TargetDir
 }
 
+$paperSyncCmd = @"
+@echo off
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Users\ASUS\.codex\skills\overleaf-paper-sync\scripts\overleaf_sync.py" sync . --message "Codex: sync Overleaf changes"
+"@
+Set-Content -Path (Join-Path $TargetDir "sync-overleaf-project.cmd") -Value $paperSyncCmd -Encoding ASCII
+
+$paperSyncPs1 = @"
+[CmdletBinding()]
+param(
+    [string]`$Path = ".",
+    [string]`$Message = "Codex: sync Overleaf changes"
+)
+
+`$ErrorActionPreference = "Stop"
+
+python "C:\Users\ASUS\.codex\skills\overleaf-paper-sync\scripts\overleaf_sync.py" preflight `$Path
+python "C:\Users\ASUS\.codex\skills\overleaf-paper-sync\scripts\overleaf_sync.py" sync `$Path --message `$Message
+"@
+Set-Content -Path (Join-Path $TargetDir "sync-overleaf-project.ps1") -Value $paperSyncPs1 -Encoding ASCII
+
 Push-Location $TargetDir
 try {
     & git config core.fileMode false
