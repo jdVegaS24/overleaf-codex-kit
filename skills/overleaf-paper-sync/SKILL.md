@@ -14,9 +14,10 @@ Make local Codex edits land in the user's Overleaf project through Git. After a 
 1. If the repository is not cloned yet, read `references/setup-guide.md` and guide the user through the minimal setup. Never ask the user to paste an Overleaf token into chat; use the setup script or Git credential prompt.
 2. If already inside a paper repository, run the helper script's `doctor` command to confirm the repo, remote, branch, status, and likely main `.tex` files.
 3. Whenever the user asks for an edit or revision, automatically run `preflight` first to pull the latest Overleaf state unless the worktree has uncommitted user changes. If dirty, inspect and preserve those changes before editing.
-4. Make the requested paper edits, keeping LaTeX structure and bibliography files intact.
-5. Validate locally with conflict-marker checks and `git diff --check`. Compile only when a local TeX toolchain is available or the user asks for it; Overleaf remains the canonical compile environment.
-6. Automatically run `sync` at the end unless the user explicitly asks not to push. Report the pushed commit hash and tell the user to Recompile in Overleaf.
+4. If the same section appears to have been edited by more than one collaborator, do not overwrite it blindly. Compare the candidate versions, merge the best parts when safe, and ask for explicit user approval before pushing if the conflict affects a key section such as the abstract, introduction, results, or conclusion.
+5. Make the requested paper edits, keeping LaTeX structure and bibliography files intact.
+6. Validate locally with conflict-marker checks and `git diff --check`. Compile only when a local TeX toolchain is available or the user asks for it; Overleaf remains the canonical compile environment.
+7. Automatically run `sync` at the end unless the user explicitly asks not to push. Report the pushed commit hash and tell the user to Recompile in Overleaf.
 
 ## Commands
 
@@ -81,3 +82,13 @@ For classroom usage, the default workflow is hands-off for the student after the
 4. Push automatically.
 
 Only stop for user input if the repository is not yet connected or Git requests a token/credential prompt during setup.
+
+## Conflict Handling
+
+If two collaborators change the same section, especially the abstract, do not do a silent overwrite. Prefer a reviewed merge:
+
+1. Detect the overlap.
+2. Compare both versions.
+3. Merge only the safe parts automatically.
+4. Ask the user to choose when the section is important or the versions differ materially.
+5. Never push a guessed overwrite to a key section without approval.
